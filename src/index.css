@@ -5,62 +5,60 @@
 :root {
   --primary: #000000;
   --secondary: #ff00a0;
-  --light: #F3F3F3;
+  --light: #F5F5F7;
   --accent: #7928CA;
   --yellow: #FFD166;
-  --pink: #EF476F;
+  --pink: #FF72B6;
+  --green: #4CAF50;
+  --blue: #3498DB;
 }
 
 body {
   background-color: var(--light);
   color: var(--primary);
   font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 600;
   overflow-x: hidden;
 }
 
-/* Neubrutalism styles */
-.neubrutal-card {
+/* Navigation */
+.nav-pill {
+  background: white;
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
+  border-radius: 9999px;
+  width: 30%;
+  min-width: 300px;
+}
+
+/* Card styles */
+.card {
   border: 2px solid var(--primary);
   box-shadow: 6px 6px 0px 0px var(--primary);
+  background: white;
   transition: all 0.2s ease;
 }
 
-.neubrutal-card:hover {
+.card:hover {
   transform: translate(2px, 2px);
   box-shadow: 4px 4px 0px 0px var(--primary);
 }
 
-.neubrutal-card:active {
-  transform: translate(6px, 6px);
-  box-shadow: 0px 0px 0px 0px var(--primary);
-}
-
-.neubrutal-button {
+/* Button styles */
+.btn {
   border: 2px solid var(--primary);
   box-shadow: 4px 4px 0px 0px var(--primary);
   transition: all 0.2s ease;
   font-weight: 700;
 }
 
-.neubrutal-button:hover {
+.btn:hover {
   transform: translate(1px, 1px);
   box-shadow: 3px 3px 0px 0px var(--primary);
 }
 
-.neubrutal-button:active {
+.btn:active {
   transform: translate(4px, 4px);
   box-shadow: 0px 0px 0px 0px var(--primary);
-}
-
-/* Navigation */
-.nav-pill {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid var(--primary);
-  box-shadow: 4px 4px 0px 0px var(--primary);
-  border-radius: 9999px;
 }
 
 /* ID Card */
@@ -70,31 +68,34 @@ body {
   background: white;
 }
 
+.id-card-header {
+  background-color: var(--green);
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 /* Timeline */
 .timeline-item {
   border: 2px solid var(--primary);
-  box-shadow: 4px 4px 0px 0px var(--primary);
+  box-shadow: 6px 6px 0px 0px var(--primary);
   background: white;
   transition: all 0.2s ease;
 }
 
 .timeline-item:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
 }
 
 /* Highlighted text */
 .text-highlight {
-  background-color: var(--yellow);
-  padding: 0 4px;
-  display: inline-block;
-}
-
-.text-highlight-pink {
   background-color: var(--pink);
   color: white;
-  padding: 0 4px;
+  padding: 0 8px;
   display: inline-block;
+  font-weight: bold;
 }
 
 /* Custom scrollbar */
@@ -119,7 +120,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(243, 243, 243, 0.95);
+  background: rgba(245, 245, 247, 0.95);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -194,3 +195,11 @@ body {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Hero section */
+.hero-slogan {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
