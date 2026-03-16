@@ -3,78 +3,98 @@
 @tailwind utilities;
 
 :root {
-  --primary: #00f0ff;
+  --primary: #000000;
   --secondary: #ff00a0;
-  --dark: #0a0a12;
-  --darker: #050508;
+  --light: #F3F3F3;
   --accent: #7928CA;
+  --yellow: #FFD166;
+  --pink: #EF476F;
 }
 
 body {
-  background-color: var(--dark);
-  color: white;
+  background-color: var(--light);
+  color: var(--primary);
   font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
   overflow-x: hidden;
 }
 
-.gradient-text {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Neubrutalism styles */
+.neubrutal-card {
+  border: 2px solid var(--primary);
+  box-shadow: 6px 6px 0px 0px var(--primary);
+  transition: all 0.2s ease;
 }
 
-.gradient-border {
-  position: relative;
-  border-radius: 1rem;
+.neubrutal-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--primary);
 }
 
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: 1rem;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+.neubrutal-card:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px 0px var(--primary);
 }
 
-.glass-effect {
-  background: rgba(10, 10, 18, 0.7);
+.neubrutal-button {
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.neubrutal-button:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0px 0px var(--primary);
+}
+
+.neubrutal-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--primary);
+}
+
+/* Navigation */
+.nav-pill {
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
+  border-radius: 9999px;
 }
 
-.hover-scale {
-  transition: transform 0.3s ease;
+/* ID Card */
+.id-card {
+  border: 2px solid var(--primary);
+  box-shadow: 6px 6px 0px 0px var(--primary);
+  background: white;
 }
 
-.hover-scale:hover {
-  transform: scale(1.05);
+/* Timeline */
+.timeline-item {
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
+  background: white;
+  transition: all 0.2s ease;
 }
 
-.neon-glow {
-  box-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+.timeline-item:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px var(--primary);
 }
 
-.neon-glow-secondary {
-  box-shadow: 0 0 15px var(--secondary), 0 0 30px var(--secondary);
+/* Highlighted text */
+.text-highlight {
+  background-color: var(--yellow);
+  padding: 0 4px;
+  display: inline-block;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.text-highlight-pink {
+  background-color: var(--pink);
+  color: white;
+  padding: 0 4px;
+  display: inline-block;
 }
 
 /* Custom scrollbar */
@@ -83,16 +103,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--darker);
+  background: var(--light);
+  border-left: 2px solid var(--primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary), var(--secondary));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(var(--secondary), var(--primary));
+  background: var(--primary);
+  border: 2px solid var(--light);
 }
 
 /* Full screen iframe overlay */
@@ -102,11 +119,12 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(243, 243, 243, 0.95);
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--primary);
 }
 
 .fullscreen-overlay iframe {
@@ -119,9 +137,10 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: var(--secondary);
-  color: white;
-  border: none;
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -131,6 +150,17 @@ body {
   cursor: pointer;
   font-size: 20px;
   z-index: 10000;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0px 0px var(--primary);
+}
+
+.close-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--primary);
 }
 
 /* Video player styles */
@@ -138,6 +168,8 @@ body {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border: 2px solid var(--primary);
+  box-shadow: 6px 6px 0px 0px var(--primary);
 }
 
 .video-container iframe {
@@ -147,4 +179,18 @@ body {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
