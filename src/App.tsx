@@ -16,7 +16,9 @@ import {
   Layout,
   Smartphone,
   Music,
-  Zap
+  Zap,
+  Book,
+  Gamepad2
 } from 'lucide-react';
 import avatar2d from './assets/2d.png';
 import avatar3d from './assets/3d.png';
@@ -334,12 +336,12 @@ const Works = () => {
   );
 };
 
-const Hobbies = () => {
+const Hobbies = ({ onDesignClick, onMailClick }: { onDesignClick: () => void, onMailClick: () => void }) => {
   const hobbies = [
     { title: '音乐', icon: Music, color: 'bg-red-600', desc: '独立词曲制作者！', link: 'https://music.163.com/#/song?id=1828521966' },
     { title: '剪辑', icon: Zap, color: 'bg-black', desc: '用创意点亮生活！', link: 'https://v.douyin.com/0_m1nTTXQ9c' },
-    { title: '设计', icon: Palette, color: 'bg-brand-yellow', desc: '探索色彩与形状的无限可能。' },
-    { title: '排版', icon: Layout, color: 'bg-brand-green', desc: '让信息传递更具美感。' },
+    { title: '写作', icon: Book, color: 'bg-teal-500', desc: '深夜的灵感迸发！', isDesign: true },
+    { title: '游戏', icon: Gamepad2, color: 'bg-slate-800', desc: '探索电子游戏的无限世界！', link: 'https://steamcommunity.com/profiles/76561199030835938/' },
   ];
 
   return (
@@ -358,8 +360,14 @@ const Hobbies = () => {
           <motion.div 
             key={i}
             whileHover={{ y: -10 }}
-            className={`bg-white neo-border neo-shadow rounded-3xl p-8 text-center flex flex-col items-center ${hobby.link ? 'cursor-pointer' : ''}`}
-            onClick={() => hobby.link && window.open(hobby.link, '_blank')}
+            className={`bg-white neo-border neo-shadow rounded-3xl p-8 text-center flex flex-col items-center ${hobby.link || hobby.isDesign ? 'cursor-pointer' : ''}`}
+            onClick={() => {
+              if (hobby.link) {
+                window.open(hobby.link, '_blank');
+              } else if (hobby.isDesign) {
+                onDesignClick();
+              }
+            }}
           >
             <div className={`w-20 h-20 ${hobby.color} text-white rounded-2xl neo-border neo-shadow flex items-center justify-center mb-6`}>
               <hobby.icon size={40} />
@@ -370,17 +378,30 @@ const Hobbies = () => {
         ))}
       </div>
 
-      <div className="mt-24 bg-brand-yellow neo-border neo-shadow rounded-3xl p-12 text-center">
-        <div className="w-20 h-20 bg-white neo-border neo-shadow rounded-2xl flex items-center justify-center mx-auto mb-8">
-          <Mail size={40} />
+      <div className="mt-24 bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-900 neo-border neo-shadow rounded-3xl p-12 text-center overflow-hidden relative" style={{ animation: 'breathe 4s ease-in-out infinite' }}>
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(147,51,234,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.3)_0%,transparent_50%)]"></div>
         </div>
-        <h3 className="text-4xl font-bold mb-4">Get in touch</h3>
-        <p className="text-xl mb-8 max-w-lg mx-auto">
-          正在寻找合作伙伴或只是想打个招呼？随时欢迎联系我！
-        </p>
-        <button className="bg-black text-white px-10 py-5 rounded-2xl font-bold text-xl neo-shadow neo-shadow-hover">
-          发送邮件
-        </button>
+        <div className="relative z-10">
+          <div className="overflow-hidden">
+            <div className="animate-marquee whitespace-nowrap">
+              <h3 className="text-4xl font-bold mb-4 inline-block text-white">Get in touch</h3>
+              <span className="mx-8 text-4xl font-bold text-white">✨</span>
+              <h3 className="text-4xl font-bold mb-4 inline-block text-white">Get in touch</h3>
+              <span className="mx-8 text-4xl font-bold text-white">✨</span>
+              <h3 className="text-4xl font-bold mb-4 inline-block text-white">Get in touch</h3>
+              <span className="mx-8 text-4xl font-bold text-white">✨</span>
+              <h3 className="text-4xl font-bold mb-4 inline-block text-white">Get in touch</h3>
+              <span className="mx-8 text-4xl font-bold text-white">✨</span>
+            </div>
+          </div>
+          <p className="text-xl mb-8 max-w-lg mx-auto text-white/90">
+            想要联系我？点击邮件或者网页底部有联系方式哦~
+          </p>
+          <button onClick={onMailClick} className="bg-white text-black px-10 py-5 rounded-2xl font-bold text-xl neo-shadow neo-shadow-hover hover:bg-indigo-100 transition-colors">
+            发送邮件
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -447,6 +468,121 @@ const Footer = ({ onWeChatClick, setActiveTab }: { onWeChatClick: () => void, se
   );
 };
 
+const DesignModal = ({ onClose, onRestart }: { onClose: () => void, onRestart: () => void }) => {
+  const [showGlitch, setShowGlitch] = useState(false);
+  const [showRestart, setShowRestart] = useState(false);
+
+  const novelText = `忒修斯之船
+
+“医生，最近我感觉记忆出了问题……头痛得像有千万根量子针在突触里乱钻。”
+我是一名三级历史教师，第一次走进这座悬浮在云层之上的“永恒诊所”。诊室由单向量子玻璃隔开，外面是永不熄灭的霓虹巨幕，上面滚动着同一句话：
+【更换即永生　忠诚即自由】
+医生坐在我对面，瞳孔里闪烁着淡蓝色的数据流——那是实时意识监控的标志。他声音经过神经滤波器处理，冰冷得没有一丝起伏。
+“症状从何时开始？”
+“上次车祸之后。”我咽了口唾沫，金属喉结发出轻微的摩擦音，“他们赔了全额仿生神经陶瓷，但我选了最廉价的‘工业级量子合金脑’。谁知道……里面塞进了太多不属于我的东西。”
+医生微微偏头，瞳孔里数据流加速滚动：“赔偿额度明明可以覆盖S级神经陶瓷+全突触量子纠缠备份，为什么选金属？”
+我苦笑，声音带着合金共振的金属味：“医生，你又不是不知道。现在黑市记忆替换一次要三百万信用点，金属脑只需要三十万。反正脑壳外面看不见，谁管里面装的是什么垃圾？”
+他点头，像在确认什么，又像在给我的脑内监控程序打标签。
+“那些错乱记忆……具体内容？”
+我犹豫了足足十七秒，脑内警报灯疯狂闪烁——那是植入的“反自由意识检测模块”在预警。
+“……反自由意识的。”
+诊室瞬间安静。医生缓缓举起个人终端，屏幕上跳出密密麻麻的《自由意识忠诚协议》第47条：任何反自由内容一经发现，立即执行“深度灵魂清洗”。
+“说吧。”他懒洋洋地靠向椅背，“这里反自由的内容，比正统历史档案库还多。该记的我都记好了——接下来，就是听故事时间。”
+我深吸一口气，声音开始颤抖：
+“在我的记忆里，自由意识根本不是救世主。它是公元2247年，一个叫卡尔·维特的疯子神经科学家创立的邪教。他掌握了‘量子记忆纠缠植入技术’——可以把虚假记忆像病毒一样通过纳米突触直接写入全人类大脑。
+他先在十万信徒脑内植入‘72小时后第三次世界大战必然爆发’的深度伪记忆。恐慌像量子纠缠一样瞬间传遍全球。政客、将军、平民……所有人同时‘亲眼看见’核弹落下的幻觉。
+然后他‘拯救’了世界——用轨道激光屠杀拒绝植入者，用神经瘟疫清扫反抗区。自由3年，全球人口从92亿被‘优化’到31亿。城市变成焚尸炉，河流漂满婴儿的残骸，空气里永远是烧焦蛋白质的甜腥味。”
+我的太阳穴像被纳米钻头贯穿。我看见了：母亲抱着孩子跪在街头，头盖骨被记忆改写枪打开，脑浆里直接灌入忠诚协议；看见了军队把拒绝更换器官的人活生生塞进“器官回收熔炉”，熔化的血肉顺着管道流进永生工厂。
+医生忽然露出一个近乎温柔的微笑：“继续。别停。”
+头痛像被一只无形的手掐断。我猛地清醒过来。
+我不是历史老师。
+我代号“档案员-07”，自然人派最后一名原生大脑战士。我的任务是把这段被抹杀的历史通过量子暗网散播出去，唤醒那些还保留一丝原生神经的人，让他们知道——
+自由意识的“大清洗”从来不是结束，而是开始。
+自由5年，只剩最后9.7亿人。维特推出“永恒协议”：只要接受全器官量子替换+记忆重写，就能获得理论上的永生。但代价是——每一次替换，都会把你上一版人格彻底覆写成“忠诚版本”。反抗者被改造成拥护者，拥护者被改造成更狂热的拥护者。
+我盯着医生，咬牙切齿：“你们以为把我金属脑洗成傻子，就能让我闭嘴？错了。我记得每一具被熔化的尸体。我会把真相——”
+医生忽然笑了，笑得像终于等到猎物上钩的蜘蛛。
+“很好，同志。”
+他站起身，隔着量子玻璃轻轻拍了拍我的肩膀——其实是激活了我脑内隐藏的后门程序。
+“你可以回去了。记住，千万别把今天在这里发生的事说出去。否则……”
+他没有说完，但我的金属脑已经收到警告：若泄露，将触发“灵魂熔毁协议”，把我的意识活活烧成量子噪声。
+门开了。
+外面站着一个脸上横贯三道激光刀疤的壮汉，代号“收割者-09”。
+“怎么样，‘医生’？”刀疤咧嘴，露出满口合金牙，“他彻底信了？”
+“毫无破绽。”医生摘下白大褂，露出里面植满监控纳米丝的黑色义体，“最新一代‘忒修斯记忆输送协议’已经完美闭环。他现在坚信自己是反自由意识的圣战士，而且会拼死保守这个‘秘密’——直到我们需要他把这个秘密‘泄露’给自由意识高层。”
+刀疤哈哈大笑，声音在金属喉管里回荡：“老大说得对，这技术他妈的太牛逼了。他连自己是被我们绑来做‘忠诚测试’都忘了。”
+医生——真正的代号“伪装者-2147”——面无表情地看着窗外永生城市的夜景。无数悬浮舱里的人正在接受每日例行的“记忆同步更新”。
+“收割者，你听说过忒修斯之船吗？”
+“啥？”
+“古地球故事。一艘船常年航行，每一块腐烂木板都被替换。几百年后，所有部件都不是原来的了。它还是那艘船吗？”
+刀疤挠挠激光疤：“当然是啊。名字没变，功能没变。外面那些换了十七次全身义体的永生人，不还是人吗？想太多的人最后都进了熔炉。”
+医生低声自语，像在对空气说话：
+“那人类这艘船呢？我们……还叫人类吗？”
+刀疤没听见，已经转身离开。
+同一时刻，地下第47层“暗影枢纽”。
+收割者的个人终端亮起，一道全息投影浮现——正是刚刚那位“历史老师”的脸。
+“老大，放心。他已经被我们彻底洗成武器了。脑内植入了三重量子后门：第一重让他相信自己是反抗者，第二重让他把‘真相’只告诉我们指定的目标，第三重……在他完成任务后，会自动触发自我熔毁，把所有证据烧成量子灰。”
+投影里的“老大”——一个全身泡在培养液里的残破义体——缓缓点头：
+“很好。他是我们打入自由意识核心议会的最后一颗棋子。等他把‘反自由记忆’散播出去，自由意识高层就会内乱。然后我们……”
+他忽然抱住培养舱的边缘，剧痛像百万伏电流贯穿残存的神经。
+“我……是怎么想到这个复仇计划的？”
+意识断裂的瞬间，他看见了无数层嵌套的自己：
+
+被维特最早植入恐惧记忆的信徒
+被大清洗熔炉烧成灰却“复活”成拥护者的受害者
+被反抗组织绑架、洗脑成卧底的永生人
+现在这个只剩大脑却自以为在领导复仇的怪物……
+
+层层叠叠，像一艘被无限拆解又无限重组的船，每一次替换都更接近彻底的非人。
+培养舱门无声滑开。
+“医生”走了进来，哼着不成调的电子音小曲，按下了墙上血红色的按钮。
+【忒修斯覆盖协议·第1147次启动】
+记忆替换程序以0.3秒完成全量子突触重写。
+“又坏掉了一块木板。”医生轻声说，声音里带着近乎怜悯的疲惫。
+实验室中央的显示屏上，进度条走完100%。
+新的人格睁开眼。
+他揉了揉金属太阳穴，喃喃自语：
+“医生……最近我感觉我的记忆出了问题……头痛得像有千万根量子针在突触里乱钻……”`;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowGlitch(true);
+      setTimeout(() => {
+        setShowGlitch(false);
+        setShowRestart(true);
+      }, 500);
+    }, 1000);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center">
+      <div className="absolute inset-0 bg-stone-100 bg-grid-pattern"></div>
+      
+      <div 
+        className="absolute inset-0"
+        onClick={onClose}
+      ></div>
+
+      <div className="relative z-10 w-full max-w-4xl max-h-[80vh] overflow-y-auto p-8 mx-4">
+        <h1 className="text-4xl font-bold text-center mb-8 text-gray-900">忒修斯之船</h1>
+        <div className={`font-bold text-gray-800 text-lg leading-relaxed whitespace-pre-wrap relative ${showGlitch ? 'animate-glitch' : ''}`}>
+          {novelText.replace('忒修斯之船\n\n', '')}
+        </div>
+
+        {showRestart && (
+          <motion.div className="mt-8 text-center">
+            <button
+              onClick={onRestart}
+              className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-xl font-bold text-xl neo-shadow hover:scale-105 transition-all"
+            >
+              重新启动
+            </button>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // --- Main App ---
 
 const randomMessages = [
@@ -463,6 +599,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [randomToastMessage, setRandomToastMessage] = useState<string | null>(null);
+  const [showDesignModal, setShowDesignModal] = useState(false);
 
   // Scroll to top when tab changes
   useEffect(() => {
@@ -520,6 +657,21 @@ export default function App() {
     }, 2000);
   };
 
+  const handleDesignClick = () => {
+    setShowDesignModal(true);
+  };
+
+  const handleDesignModalClose = () => {
+    setShowDesignModal(false);
+  };
+
+  const handleDesignModalRestart = () => {
+    setShowDesignModal(false);
+    setTimeout(() => {
+      setShowDesignModal(true);
+    }, 100);
+  };
+
   return (
     <div className="relative selection:bg-brand-yellow selection:text-black">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} onMailClick={handleMailClick} />
@@ -564,50 +716,18 @@ export default function App() {
             {activeTab === 'home' && <Hero onNext={() => setActiveTab('works')} onAbout={() => setActiveTab('about')} onWelcomeClick={handleWelcomeClick} />}
             {activeTab === 'about' && <About />}
             {activeTab === 'works' && <Works />}
-            {activeTab === 'hobbies' && <Hobbies />}
+            {activeTab === 'hobbies' && <Hobbies onDesignClick={handleDesignClick} onMailClick={handleMailClick} />}
           </motion.div>
         </AnimatePresence>
       </main>
 
       <Footer onWeChatClick={handleWeChatClick} setActiveTab={setActiveTab} />
 
-      {/* Custom styles for marquee animation, grid pattern, and image hover effect */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        .bg-grid-pattern {
-          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        @keyframes spinAndZoom {
-          0% { transform: rotateY(0deg) scale(1); }
-          100% { transform: rotateY(360deg) scale(1); }
-        }
-        .image-hover-effect:hover {
-          animation: spinAndZoom 0.8s ease-in-out forwards;
-        }
-        
-        @keyframes breathe {
-          0% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(255, 114, 182, 0.4);
-          }
-          50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 10px rgba(255, 114, 182, 0);
-          }
-          100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(255, 114, 182, 0);
-          }
-        }
-      `}</style>
+      <AnimatePresence>
+        {showDesignModal && (
+          <DesignModal onClose={handleDesignModalClose} onRestart={handleDesignModalRestart} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
