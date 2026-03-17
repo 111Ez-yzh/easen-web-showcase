@@ -23,7 +23,7 @@ import {
 import avatar2d from './assets/2d.png';
 import avatar3d from './assets/3d.png';
 import paodaoshushu from './assets/paodaoshushu.png';
-import resume from './assets/易哲豪简历-互联网3.15.pdf';
+
 
 // --- Components ---
 
@@ -208,7 +208,7 @@ const About = () => {
             </div>
           </div>
 
-          <button onClick={() => window.open(resume, '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
+          <button onClick={() => window.open('/易哲豪简历.pdf', '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
             <User size={20} />
             查看简历
           </button>
