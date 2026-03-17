@@ -207,7 +207,7 @@ const About = () => {
             </div>
           </div>
 
-          <button onClick={() => window.open('src/assets/易哲豪简历-互联网3.15.pdf', '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
+          <button onClick={() => window.open('/src/assets/易哲豪简历-互联网3.15.pdf', '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
             <User size={20} />
             查看简历
           </button>
