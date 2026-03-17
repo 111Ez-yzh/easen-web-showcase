@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import avatar2d from './assets/2d.png';
 import avatar3d from './assets/3d.png';
+import paodaoshushu from './assets/paodaoshushu.png';
 
 // --- Components ---
 
@@ -206,7 +207,7 @@ const About = () => {
             </div>
           </div>
 
-          <button onClick={() => window.open('/src/assets/易哲豪简历-互联网3.15.pdf', '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
+          <button onClick={() => window.open('/易哲豪简历-互联网3.15.pdf', '_blank')} className="bg-black text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 neo-shadow neo-shadow-hover">
             <User size={20} />
             查看简历
           </button>
@@ -271,13 +272,13 @@ const Works = () => {
       title: '跑刀鼠鼠',
       category: 'HTML游戏',
       color: 'bg-brand-purple',
-      image: '/src/assets/paodaoshushu.png'
+      image: paodaoshushu
     },
     {
       title: '电子阳痿拯救器',
       category: '工具应用',
       color: 'bg-brand-green',
-      image: '/src/assets/paodaoshushu.png'
+      image: paodaoshushu
     }
   ];
 
