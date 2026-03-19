@@ -316,12 +316,12 @@ const Works = () => {
               <h3 className={`text-3xl font-bold mb-4 ${i === 0 ? 'group-hover:text-brand-blue transition-colors cursor-pointer' : ''}`}>
                 {project.title}
               </h3>
-              <p className="text-black/60 mb-8">
+              <p className="text-black/60 mb-8 whitespace-pre-line">
                 {i === 0 
                   ? '由"三角洲行动"激发的灵感，独立设计的放置类小游戏。从设计到发布全部独立完成。'
                   : i === 1
                   ? '一键抓取 Steam 高分与新品数据，生成 JSON 格式。'
-                  : '各位病友，还在为 Steam 库里吃灰的 500 个游戏发愁吗？\n经过七七四十九天炼丹，**《电子阳痿神医》**正式上线：\n✅ 1500+ 游戏大药仓，告别选择困难；\n✅ 反馈式权重引擎，你点的每个 ❤️ 都在进化你的药柜；\n✅ 接入DeepSeek 驻诊，幽默毒舌，一针见血'
+                  : '各位病友，还在为 Steam 库里吃灰的 500 个游戏发愁吗？\n赛博医生，正式上线！\n✅ 1500+ 游戏大药仓，告别选择困难；\n✅ 反馈式权重引擎，你点的每个 ❤️ 都在进化你的药柜；\n✅ 接入DeepSeek 驻诊，幽默毒舌，一针见血'
                 }
               </p>
               {i === 1 && (
