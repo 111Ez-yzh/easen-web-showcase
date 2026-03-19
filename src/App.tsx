@@ -282,7 +282,7 @@ const Works = () => {
       image: 'Python'
     },
     {
-      title: '跑刀鼠鼠',
+      title: '赛博医生',
       category: 'API配置项目',
       color: 'bg-brand-purple',
       image: paodaoshushu
@@ -309,17 +309,19 @@ const Works = () => {
             viewport={{ once: true }}
             className="group bg-white neo-border neo-shadow rounded-3xl overflow-hidden flex flex-col md:flex-row"
           >
-            <div className={`p-8 md:p-12 flex-1 flex flex-col justify-center ${i === 0 || i === 2 ? 'cursor-pointer' : ''}`} onClick={() => (i === 0 || i === 2) && window.open('https://111ez-yzh.itch.io/paodaoshushudemo', '_blank')}>
+            <div className={`p-8 md:p-12 flex-1 flex flex-col justify-center ${i === 0 ? 'cursor-pointer' : ''}`} onClick={() => i === 0 && window.open('https://111ez-yzh.itch.io/paodaoshushudemo', '_blank')}>
               <span className="bg-black text-white px-3 py-1 rounded-full text-xs font-bold w-fit mb-4">
                 {project.category}
               </span>
-              <h3 className={`text-3xl font-bold mb-4 ${(i === 0 || i === 2) ? 'group-hover:text-brand-blue transition-colors cursor-pointer' : ''}`}>
+              <h3 className={`text-3xl font-bold mb-4 ${i === 0 ? 'group-hover:text-brand-blue transition-colors cursor-pointer' : ''}`}>
                 {project.title}
               </h3>
               <p className="text-black/60 mb-8">
-                {i === 0 || i === 2 
+                {i === 0 
                   ? '由"三角洲行动"激发的灵感，独立设计的放置类小游戏。从设计到发布全部独立完成。'
-                  : '一键抓取 Steam 高分与新品数据，生成 JSON 格式。'
+                  : i === 1
+                  ? '一键抓取 Steam 高分与新品数据，生成 JSON 格式。'
+                  : '电子阳痿神医 (Cyber-Anhedonia Doctor) —— 专治各种"买了不玩"和"打开即关"。'
                 }
               </p>
               {i === 1 && (
@@ -338,12 +340,14 @@ const Works = () => {
                 </button>
               )}
             </div>
-            <div className={`flex-1 ${project.color} p-8 md:p-12 flex items-center justify-center ${i === 0 || i === 2 ? 'cursor-pointer' : ''}`} onClick={() => (i === 0 || i === 2) && window.open('https://111ez-yzh.itch.io/paodaoshushudemo', '_blank')}>
+            <div className={`flex-1 ${project.color} p-8 md:p-12 flex items-center justify-center ${i === 0 ? 'cursor-pointer' : ''}`} onClick={() => i === 0 && window.open('https://111ez-yzh.itch.io/paodaoshushudemo', '_blank')}>
               <div className="w-full aspect-video bg-white neo-border neo-shadow rounded-2xl overflow-hidden relative flex items-center justify-center">
                 {i === 1 ? (
                   <span className="text-6xl font-bold text-black/70">Python</span>
-                ) : i === 0 || i === 2 ? (
+                ) : i === 0 ? (
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" />
+                ) : i === 2 ? (
+                  <span className="text-6xl font-bold text-black/70">Cyber</span>
                 ) : (
                   <span className="text-4xl font-bold text-black/70">正在施工中...🚧</span>
                 )}
