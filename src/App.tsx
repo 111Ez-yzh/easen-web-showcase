@@ -327,8 +327,13 @@ const Works = () => {
                   查看GitHub源码 <ExternalLink size={18} />
                 </button>
               )}
-              {(i === 0 || i === 2) && (
+              {i === 0 && (
                 <button onClick={(e) => {e.stopPropagation(); window.open('https://github.com/111Ez-yzh/-demo', '_blank')}} className="flex items-center gap-2 font-bold group-hover:gap-4 transition-all px-6 py-3 rounded-xl bg-black text-white hover:bg-brand-blue hover:scale-105 hover:shadow-xl transition-all duration-300">
+                  查看GitHub源码 <ExternalLink size={18} />
+                </button>
+              )}
+              {i === 2 && (
+                <button onClick={(e) => {e.stopPropagation(); window.open('https://github.com/111Ez-yzh/Cyberdoctor', '_blank')}} className="flex items-center gap-2 font-bold group-hover:gap-4 transition-all px-6 py-3 rounded-xl bg-black text-white hover:bg-brand-blue hover:scale-105 hover:shadow-xl transition-all duration-300">
                   查看GitHub源码 <ExternalLink size={18} />
                 </button>
               )}
