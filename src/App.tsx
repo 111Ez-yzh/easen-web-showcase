@@ -23,6 +23,7 @@ import {
 import avatar2d from './assets/2d.png';
 import avatar3d from './assets/3d.png';
 import paodaoshushu from './assets/paodaoshushu.png';
+import page from './assets/page.png';
 
 
 // --- Components ---
@@ -347,13 +348,7 @@ const Works = () => {
                 ) : i === 0 ? (
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" />
                 ) : i === 2 ? (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-300 hover:scale-105">
-                    <div className="text-4xl font-bold mb-4">赛博医生</div>
-                    <div className="text-lg text-black/70 text-center">
-                      病友 [张三] 刚刚开出了一帖《星露谷物语》，药效：安神补脑。<br/>
-                      病友 [李四] 抽到了《塞尔达传说》，药效：探索精神。
-                    </div>
-                  </div>
+                  <img src={page} alt="赛博医生" className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" />
                 ) : (
                   <span className="text-4xl font-bold text-black/70">正在施工中...🚧</span>
                 )}
