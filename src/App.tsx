@@ -276,10 +276,10 @@ const Works = () => {
       image: paodaoshushu
     },
     {
-      title: '电子阳痿拯救器',
-      category: '工具应用',
-      color: 'bg-brand-green',
-      image: paodaoshushu
+      title: 'Steam游戏数据抓取',
+      category: 'Python抓取数据工具',
+      color: 'bg-slate-500',
+      image: 'Python'
     },
     {
       title: '跑刀鼠鼠',
@@ -317,11 +317,16 @@ const Works = () => {
                 {project.title}
               </h3>
               <p className="text-black/60 mb-8">
-                {(i === 0 || i === 2) 
+                {i === 0 || i === 2 
                   ? '由"三角洲行动"激发的灵感，独立设计的放置类小游戏。从设计到发布全部独立完成。'
-                  : '喜欢的游戏没意思了？想玩同样类型的游戏？最近游戏圈什么游戏热度最高？不用担心，我来拯救你！'
+                  : '一键抓取 Steam 高分与新品数据，生成 JSON 格式。'
                 }
               </p>
+              {i === 1 && (
+                <button onClick={(e) => {e.stopPropagation(); window.open('https://github.com/111Ez-yzh/gamecatcher', '_blank')}} className="flex items-center gap-2 font-bold group-hover:gap-4 transition-all px-6 py-3 rounded-xl bg-black text-white hover:bg-brand-blue hover:scale-105 hover:shadow-xl transition-all duration-300">
+                  查看GitHub源码 <ExternalLink size={18} />
+                </button>
+              )}
               {(i === 0 || i === 2) && (
                 <button onClick={(e) => {e.stopPropagation(); window.open('https://github.com/111Ez-yzh/-demo', '_blank')}} className="flex items-center gap-2 font-bold group-hover:gap-4 transition-all px-6 py-3 rounded-xl bg-black text-white hover:bg-brand-blue hover:scale-105 hover:shadow-xl transition-all duration-300">
                   查看GitHub源码 <ExternalLink size={18} />
@@ -330,7 +335,9 @@ const Works = () => {
             </div>
             <div className={`flex-1 ${project.color} p-8 md:p-12 flex items-center justify-center ${i === 0 || i === 2 ? 'cursor-pointer' : ''}`} onClick={() => (i === 0 || i === 2) && window.open('https://111ez-yzh.itch.io/paodaoshushudemo', '_blank')}>
               <div className="w-full aspect-video bg-white neo-border neo-shadow rounded-2xl overflow-hidden relative flex items-center justify-center">
-                {(i === 0 || i === 2) ? (
+                {i === 1 ? (
+                  <span className="text-6xl font-bold text-black/70">Python</span>
+                ) : i === 0 || i === 2 ? (
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" />
                 ) : (
                   <span className="text-4xl font-bold text-black/70">正在施工中...🚧</span>
