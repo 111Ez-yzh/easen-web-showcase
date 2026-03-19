@@ -283,7 +283,7 @@ const Works = () => {
     },
     {
       title: '跑刀鼠鼠',
-      category: 'HTML游戏',
+      category: 'API配置项目',
       color: 'bg-brand-purple',
       image: paodaoshushu
     }
